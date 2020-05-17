@@ -1,39 +1,311 @@
+/*reset do css*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;  
+}
+
 body{
-    background-image: url('http://www.vanessametonini.com.br/imersaocss/a1/img/fundo.jpg');
-    background-size: auto 100vh;  
-    font-family: Arial;
-    height: 100vh;
+  background: linear-gradient(135deg, rgba(26, 188, 156, 1) 0%, rgba(142, 68, 173, 1) 100%);
+  background-size: auto;  
+  font-family: 'Quicksand', sans-serif;  
+}
+
+@media (min-width: 400px) {
+  body {
+    font-size: 20px;
   }
-  
-  .menu{
-    background-color: whitesmoke;
+}
+
+@media (min-width: 600px) {
+  body {
+    font-size: 24px;
   }
+}
+
+header {
+  align-items: center;  
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
   
-  .menu li {
-    list-style: none;
+.menu {
+  background-color: whitesmoke;    
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  z-index: 1;
+}
+
+.menu a {  
+  display: block;
+  padding: 10px 20px;
+  transition: background-color 0.3s, color 0.3s;  
+}
+
+/*.menu a:active,
+.menu a:hover {  
+  background-color: #545b5f;  
+  color: whitesmoke;  
+}*/
+  
+.menu li {
+  list-style: none;
+}
+  
+.menu ul {
+  display: flex;
+  justify-content: space-around;
+}
+  
+a {
+  color: #545b5f;
+  text-decoration: none;
+}
+
+
+
+ul:hover li:not(:hover) a {
+  opacity: 0.2;
+}
+ul li {
+  position: relative;
+  /*padding: 30px 25px 30px 25px;*/
+  cursor: pointer;
+}
+ul li::after {
+  position: absolute;
+  content: "";
+  top: 90%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #545b5f;
+  transform: scaleX(0);
+  transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+ul li:hover::after, ul li.active::after {
+  transform: scaleX(1);
+}
+
+
+
+  
+.site-subtitle,
+.site-title {
+  color: whitesmoke;
+  text-align: center;
+}
+
+.site-title {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 2em;
+}
+  
+.site-subtitle {
+  font-family: 'Quicksand', sans-serif; 
+}
+
+.sobre,
+.portfolio {
+  padding: 3em;
+  min-height: 100vh;
+  color: whitesmoke;
+}
+
+.contato {
+  padding: 3em;
+  min-height: 50vh;
+  color: whitesmoke
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
   }
-  
-  .menu ul {
-    display: flex;
-    justify-content: space-around;
+}
+
+.sobre h2,
+.contato h2,
+.portfolio h2 {
+  font-family: 'Quicksand', sans-serif;
+  margin-bottom: 1.3em;
+}
+
+.sobre .tecnologia {
+  margin-bottom: 1.2em;
+  text-align: center;
+}
+
+.sobre .tecnologia img{
+  /*border-radius: 50%;*/
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+  clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+}
+
+@media (min-width: 600px) {
+  .sobre .tecnologia,
+  .sobre .tecnologia img {
+    float: right;
+    height: 450px;
+    margin-left: 2em;
+    margin-bottom: 1em;
+    width: 450px;
   }
-  
-  a {
-    color: teal;
-    text-decoration: none;
+}
+
+.sobre p {
+  margin-bottom: 1.3em;
+  text-align: justify;
+  text-indent: 1.2em;
+}
+
+.sobre a {
+  color: purple;
+}
+
+.sobre a:hover {
+  text-decoration: underline;
+}
+
+.portfolio .grid {
+  display: grid;
+  gap: 2em;
+}
+
+@media (min-width: 560px) {
+  .portfolio .grid {
+    grid-template-columns: 240px 240px;
   }
-  
-  a:hover {
-    text-decoration: underline;
+}
+
+@media (min-width: 880px) {
+  .portfolio .grid {
+    grid-template-columns: repeat(3, 260px);
+    align-content: center;
+    justify-content: center;
+    height: calc(100vh - 8em - 48px);
   }
-  
-  .site-subtitle,
-  .site-title {
-    color: whitesmoke;
-    text-align: center;
+}
+
+.flip-card {
+  height: 180px;
+  perspective: 1000px;
+}
+
+.flip-card:hover .card {
+  transform: rotateY(180deg);
+}
+
+.card {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 2s;
+}
+
+.card-front, 
+.card-back {
+  backface-visibility: hidden;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 180px;
+  box-shadow: 0px 0px 4px 1px rgba(246, 249, 250, 0.226);
+}
+
+.card-back {
+  align-items: center;
+  background-color: rgba(246, 249, 250, 0.226);  
+  display: flex;  
+  justify-content: center;    
+  height: 180px;  
+  text-align: center;
+  transform: rotateY(180deg);  
+}
+
+/*.card-back h3 {
+  background: -webkit-linear-gradient(135deg, rgba(26, 188, 156, 1) 0%, rgba(142, 68, 173, 1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}*/
+
+.portfolio figure {
+  text-align: center;
+}
+
+.img-portfolio {
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+  object-position: left bottom;
+  transition: transform 500ms;
+}
+
+.contato a {
+  color: whitesmoke;
+  font-size: 2em;
+  transition: text-shadow 0.3s;
+}
+
+.contato a:active,
+.contato a:hover {
+  text-decoration: none;
+  text-shadow: 0px 0px 15px #ffffff;
+}
+
+.grid_icons {
+  display: grid;
+  gap: 1em;
+  justify-content: center;
+  grid-template-columns: 3em 3em;
+}
+
+@media (min-width: 600px) {
+  .grid_icons {
+    grid-template-columns: repeat(4, 3em);
   }
-  
-  .site-subtitle {
-    font-style: italic;
-  }
-  
+}
+
+.wrapper { 
+  height: 0.5vh;
+  width: 100%;
+  left:0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+/*background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);*/
+background: linear-gradient(124deg, #050505, #575555, #2e0b6e, #121d77, #1a2edf, #1ddde8, #706bb4, #454f83, #2008ad);
+background-size: 1800% 1800%;
+
+-webkit-animation: rainbow 18s ease infinite;
+-z-animation: rainbow 18s ease infinite;
+-o-animation: rainbow 18s ease infinite;
+  animation: rainbow 18s ease infinite;}
+
+@-webkit-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-moz-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-o-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@keyframes rainbow { 
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
